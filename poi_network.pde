@@ -171,4 +171,23 @@ void setupUI(){
   }
 }
 
+void controlEvent(ControlEvent theEvent) {
+  if (theEvent.isFrom(checkbox)) {
+    myColorBackground = 0;
+    print("got an event from "+checkbox.getName()+"\t\n");
+    // checkbox uses arrayValue to store the state of 
+    // individual checkbox-items. usage:
+    println(checkbox.getArrayValue());
+    int col = 0;
+    for (int i=0;i<checkbox.getArrayValue().length;i++) {
+      int n = (int)checkbox.getArrayValue()[i];
+      print(n);
+      if(n==1) {
+        myColorBackground += checkbox.getItem(i).internalValue();
+      }
+    }
+    println();    
+  }
+}
+
 
