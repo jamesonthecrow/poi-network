@@ -178,10 +178,10 @@ void controlEvent(ControlEvent theEvent) {
     print("got an event from "+typeCheckBox.getName()+"\t\n");
     // checkbox uses arrayValue to store the state of 
     // individual checkbox-items. usage:
-    for(int i=0; i<typeCheckBox.getItems().length;i++){
+    //for(int i=0; i<typeCheckBox.getItems().length;i++){
       
-    }
-    println(typeCheckBox.getArrayValue());
+    //}
+    //println(typeCheckBox.getArrayValue());
   }
 }
 
