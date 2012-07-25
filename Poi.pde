@@ -17,7 +17,7 @@ class Poi {
 
   void display() {
     float latlon[] = map.getScreenPositionFromLocation(loc);
-    if (onScreen(latlon) & selectedType()) {
+    if (onScreen(latlon)) {
       if (map.getZoomLevel() < 14.0) {
         stroke(clr);
         point(latlon[0], latlon[1]);
@@ -47,6 +47,10 @@ class Poi {
       }
     }
     return slctd;
+  }
+  
+  void updateColor(){
+    this.clr = (Integer) types.get( this.type[0] );  
   }
   
 }

@@ -40,7 +40,7 @@ CheckBox typeCheckBox;
 /**** INIT MEMORY *****/
 int NUMPOI = 500000;
 Poi[] POIS = new Poi[NUMPOI];
-ArrayList selected;
+ArrayList selected = new ArrayList();
 
 HashMap types = new HashMap();
 
@@ -73,8 +73,8 @@ void setup() {
 void draw() {
   background(BACKCOLOR);
   map.draw();
-  for (int i=0 ; i < NUMPOI; i++) {
-    POIS[i].display() ;
+  for (int i=0 ; i < selected.size(); i++) {
+    POIS[(Integer)selected.get(i)].display();
   }
 
   
@@ -91,7 +91,7 @@ void loadPOIData() {
 
       //if (n > 1000) { break;}
       
-      //if (n%10000 == 0){ println(n);}
+      if (n%10000 == 0){ println(n);}
 
       try {
         JSONObject poi = new JSONObject(ln[1]);
@@ -134,10 +134,12 @@ void keyPressed() {
     exit(); 
   }
   else if (key == 'c'){
+    println("FUCKKKK");
     Iterator iter = types.keySet().iterator();
     while (iter.hasNext()){
       types.put(iter.next().toString(), color(random(255),random(255),random(255)));
-    }  
+    }
+    for( Poi p : POIS ){ p.updateColor(); }  
   }
 }
 
@@ -165,7 +167,6 @@ void setupUI(){
                 ;
   Object[] keys = types.keySet().toArray(); 
   Arrays.sort(keys);
-  println(keys);
   for( Object l : keys){
     String k = (String)l;
     typeCheckBox.addItem(k, 0);
@@ -175,13 +176,12 @@ void setupUI(){
 
 void controlEvent(ControlEvent theEvent) {
   if (theEvent.isFrom(typeCheckBox)) {
-    print("got an event from "+typeCheckBox.getName()+"\t\n");
-    // checkbox uses arrayValue to store the state of 
-    // individual checkbox-items. usage:
-    //for(int i=0; i<typeCheckBox.getItems().length;i++){
-      
-    //}
-    //println(typeCheckBox.getArrayValue());
+    selected.clear();
+    for(int i=0; i<NUMPOI;i++){
+      if (POIS[i].selectedType()) {
+         selected.add(i); 
+      }
+    }
   }
 }
 
