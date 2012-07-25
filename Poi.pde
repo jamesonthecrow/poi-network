@@ -40,13 +40,13 @@ class Poi {
   }
   
   boolean selectedType(){
-    boolean selected = false;
+    boolean slctd = false;
     for(int i=0; i < this.type.length; i++){
       if (typeCheckBox.getState(this.type[i])){ 
-        selected = true; 
+        slctd = true; 
       }
     }
-    return selected;
+    return slctd;
   }
   
 }

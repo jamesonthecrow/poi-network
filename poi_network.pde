@@ -1,5 +1,6 @@
 import processing.opengl.*;
 import java.util.Arrays;
+import java.util.ArrayList;
 
 import codeanticode.glgraphics.*;
 
@@ -39,6 +40,7 @@ CheckBox typeCheckBox;
 /**** INIT MEMORY *****/
 int NUMPOI = 500000;
 Poi[] POIS = new Poi[NUMPOI];
+ArrayList selected;
 
 HashMap types = new HashMap();
 
@@ -89,7 +91,7 @@ void loadPOIData() {
 
       //if (n > 1000) { break;}
       
-      if (n%10000 == 0){ println(n);}
+      //if (n%10000 == 0){ println(n);}
 
       try {
         JSONObject poi = new JSONObject(ln[1]);
@@ -172,21 +174,14 @@ void setupUI(){
 }
 
 void controlEvent(ControlEvent theEvent) {
-  if (theEvent.isFrom(checkbox)) {
-    myColorBackground = 0;
-    print("got an event from "+checkbox.getName()+"\t\n");
+  if (theEvent.isFrom(typeCheckBox)) {
+    print("got an event from "+typeCheckBox.getName()+"\t\n");
     // checkbox uses arrayValue to store the state of 
     // individual checkbox-items. usage:
-    println(checkbox.getArrayValue());
-    int col = 0;
-    for (int i=0;i<checkbox.getArrayValue().length;i++) {
-      int n = (int)checkbox.getArrayValue()[i];
-      print(n);
-      if(n==1) {
-        myColorBackground += checkbox.getItem(i).internalValue();
-      }
+    for(int i=0; i<typeCheckBox.getItems().length;i++){
+      
     }
-    println();    
+    println(typeCheckBox.getArrayValue());
   }
 }
 
