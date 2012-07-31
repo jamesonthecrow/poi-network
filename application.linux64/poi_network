@@ -1,0 +1,4 @@
+#!/bin/sh
+
+APPDIR=$(dirname "$0")
+java  -Djava.library.path="$APPDIR" -cp "$APPDIR/lib/poi_network.jar:$APPDIR/lib/core.jar:$APPDIR/lib/gson-javadoc.jar:$APPDIR/lib/gson-sources.jar:$APPDIR/lib/gson.jar:$APPDIR/lib/gluegen-rt.jar:$APPDIR/lib/jogl.jar:$APPDIR/lib/opengl.jar:$APPDIR/lib/GLGraphics.jar:$APPDIR/lib/log4j-1.2.15.jar:$APPDIR/lib/Unfolding.jar:$APPDIR/lib/controlP5.jar:$APPDIR/lib/json.jar" poi_network
